@@ -7,11 +7,15 @@ extends Control
 @onready var scorer: Scorer = $Scorer
 @onready var moves_label = $HB/MC2/VB/HB/MovesLabel
 @onready var pairs_label = $HB/MC2/VB/HB2/PairsLabel
+@onready var mc_2 = $HB/MC2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalManager.on_level_selected.connect(on_level_selected)
+	SignalManager.on_game_over.connect(on_game_over)
 
+func on_game_over(moves: int)->void:
+	mc_2.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,6 +37,7 @@ func on_level_selected(level_num:int):
 		add_memory_tile(ii_dict, frame_image)
 
 	scorer.clear_new_game(level_selection.target_pairs)
+	mc_2.show()
 
 func _on_exit_button_pressed():
 	SoundManager.play_button_click(sound)
