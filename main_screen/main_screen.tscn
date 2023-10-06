@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://icrlwnuigp54"]
+[gd_scene load_steps=10 format=3 uid="uid://icrlwnuigp54"]
 
 [ext_resource type="Script" path="res://main_screen/main_screen.gd" id="1_ivknw"]
 [ext_resource type="FontFile" uid="uid://cqnt02q3wjscm" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_lek7x"]
 [ext_resource type="PackedScene" uid="uid://dbw0jjs0qlof3" path="res://level_button/level_button.tscn" id="2_46qou"]
 [ext_resource type="PackedScene" uid="uid://ncapwqssyixf" path="res://front_sprite/front_sprite.tscn" id="2_v48tr"]
+[ext_resource type="Texture2D" uid="uid://cqbfrqrsemntd" path="res://assets/ui/blue_button00.png" id="5_hmnhh"]
+[ext_resource type="Texture2D" uid="uid://cn2dso2lcoorr" path="res://assets/ui/yellow_button00.png" id="6_neqsr"]
+[ext_resource type="Texture2D" uid="uid://bck8oa6r0nqhq" path="res://assets/ui/green_button00.png" id="7_j8osf"]
+[ext_resource type="LabelSettings" uid="uid://1xos0kg2gbsa" path="res://assets/GM_32_white.tres" id="8_ejfms"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6bjk"]
 font = ExtResource("1_lek7x")
@@ -43,7 +47,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VB"]
+[node name="TitleLabel" type="Label" parent="VB"]
 layout_mode = 2
 text = "MEMORY MADNESS"
 label_settings = SubResource("LabelSettings_g6bjk")
@@ -83,3 +87,33 @@ layout_mode = 2
 [node name="Spacer" type="Control" parent="VB"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MusicButton" type="TextureButton" parent="VB"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("5_hmnhh")
+texture_pressed = ExtResource("6_neqsr")
+texture_hover = ExtResource("7_j8osf")
+
+[node name="MusicLabel" type="Label" parent="VB/MusicButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -19.5
+offset_right = 56.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music Off"
+label_settings = ExtResource("8_ejfms")
+vertical_alignment = 1
+
+[node name="Spacer5" type="Control" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VB/MusicButton" to="." method="_on_music_button_pressed"]
